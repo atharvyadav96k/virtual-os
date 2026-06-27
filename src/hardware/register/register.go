@@ -8,6 +8,10 @@ func NewRegister(registerValueType values.ValueType) Register {
 	switch registerValueType {
 	case values.String:
 		return Register{
+			value: values.NewString(""),
+		}
+	case values.Float:
+		return Register{
 			value: values.NewFloat(0),
 		}
 	case values.Integer:
