@@ -4,7 +4,7 @@ import (
 	"github.com/atharvyadav96k/virtual-os/hardware/values"
 )
 
-type register struct {
+type Register struct {
 	// Value inside the register
 	value values.Value
 }
