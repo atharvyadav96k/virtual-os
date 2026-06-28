@@ -1,7 +1,7 @@
 package cpu
 
 import (
-	"github.com/atharvyadav96k/virtual-os/hardware/flags"
+	"github.com/atharvyadav96k/virtual-os/hardware/cpu/flags"
 	"github.com/atharvyadav96k/virtual-os/hardware/storage/register"
 	"github.com/atharvyadav96k/virtual-os/opcode"
 )
@@ -11,5 +11,5 @@ type CPU struct {
 	programCounter           int
 	stackPointer             int
 	flags                    flags.Flags
-	instruction              opcode.Code
+	nstruction               opcode.Code
 }

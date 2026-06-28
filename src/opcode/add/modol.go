@@ -1,14 +1,12 @@
-package load
+package add
 
 import (
-	"github.com/atharvyadav96k/virtual-os/hardware/ram"
 	"github.com/atharvyadav96k/virtual-os/hardware/storage"
 	"github.com/atharvyadav96k/virtual-os/opcode"
 )
 
-type Load struct {
+type Add struct {
 	codeType    opcode.CodeType
 	destination storage.Storage
-	source      storage.Storage // immediate holding the RAM address
-	ram         *ram.Ram
+	source      storage.Storage
 }
