@@ -17,10 +17,26 @@ func NewHardware() Hardware {
 	}
 }
 
-func (h *Hardware) Ram() ram.Ram {
-	return h.ram
+func (h *Hardware) Ram() *ram.Ram {
+	return &h.ram
 }
 
-func (h *Hardware) Cpu() cpu.CPU {
-	return h.cpu
+func (h *Hardware) Cpu() *cpu.CPU {
+	return &h.cpu
+}
+
+func (h *Hardware) LoadProgram(startAddr int, instructions []string) {
+	h.cpu.LoadProgram(&h.ram, startAddr, instructions)
+}
+
+func (h *Hardware) Run() error {
+	for {
+		cont, err := h.cpu.Step(&h.ram)
+		if err != nil {
+			return err
+		}
+		if !cont {
+			return nil
+		}
+	}
 }

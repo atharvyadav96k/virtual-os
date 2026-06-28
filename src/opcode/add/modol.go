@@ -7,6 +7,7 @@ import (
 
 type Add struct {
 	codeType    opcode.CodeType
+	destIdx     int
 	destination storage.Storage
 	source      storage.Storage
 }

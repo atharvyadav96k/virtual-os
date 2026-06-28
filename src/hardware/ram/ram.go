@@ -7,3 +7,7 @@ func NewRam(size int) Ram {
 		storage: make([]values.Value, size),
 	}
 }
+
+func (r *Ram) Size() int {
+	return len(r.storage)
+}

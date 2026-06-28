@@ -8,11 +8,12 @@ import (
 	"github.com/atharvyadav96k/virtual-os/opcode"
 )
 
-func NewLoad(destination *register.Register, address int, r *ram.Ram) Load {
+func NewLoad(destIdx int, destination *register.Register, address int, r *ram.Ram) Load {
 	src := immediate.NewImmediate(values.Integer)
 	src.SetValue(values.NewInt(address))
 	return Load{
 		codeType:    opcode.Load,
+		destIdx:     destIdx,
 		destination: destination,
 		source:      &src,
 		ram:         r,

@@ -11,5 +11,5 @@ type CPU struct {
 	programCounter           int
 	stackPointer             int
 	flags                    flags.Flags
-	nstruction               opcode.Code
+	instruction              opcode.Code
 }

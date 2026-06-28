@@ -6,9 +6,10 @@ import (
 	"github.com/atharvyadav96k/virtual-os/opcode"
 )
 
-func NewMov(destination *register.Register, source storage.Storage) Mov {
+func NewMov(destIdx int, destination *register.Register, source storage.Storage) Mov {
 	return Mov{
 		codeType:    opcode.Mov,
+		destIdx:     destIdx,
 		destination: destination,
 		source:      source,
 	}

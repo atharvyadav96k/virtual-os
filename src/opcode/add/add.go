@@ -7,9 +7,10 @@ import (
 	"github.com/atharvyadav96k/virtual-os/opcode"
 )
 
-func NewAdd(destination *register.Register, source storage.Storage) Add {
+func NewAdd(destIdx int, destination *register.Register, source storage.Storage) Add {
 	return Add{
 		codeType:    opcode.Add,
+		destIdx:     destIdx,
 		destination: destination,
 		source:      source,
 	}

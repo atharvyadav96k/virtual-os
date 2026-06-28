@@ -8,7 +8,8 @@ import (
 
 type Load struct {
 	codeType    opcode.CodeType
+	destIdx     int
 	destination storage.Storage
-	source      storage.Storage // immediate holding the RAM address
+	source      storage.Storage
 	ram         *ram.Ram
 }

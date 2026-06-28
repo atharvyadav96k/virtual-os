@@ -6,9 +6,8 @@ import (
 )
 
 type Mov struct {
-	codeType opcode.CodeType
-	// always register
+	codeType    opcode.CodeType
+	destIdx     int
 	destination storage.Storage
-	// can be register or immediate
-	source storage.Storage
+	source      storage.Storage
 }
