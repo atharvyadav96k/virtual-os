@@ -1,40 +1,6 @@
 package values
 
-import (
-	"fmt"
-)
-
-func NewNull() Value {
-	return Value{Type: Null}
-}
-
-func NewInt(v int) Value {
-	return Value{
-		Type: Integer,
-		Int:  v,
-	}
-}
-
-func NewFloat(v float32) Value {
-	return Value{
-		Type:  Float,
-		Float: v,
-	}
-}
-
-func NewString(v string) Value {
-	return Value{
-		Type: String,
-		Str:  v,
-	}
-}
-
-func NewBool(v bool) Value {
-	return Value{
-		Type: Bool,
-		Bool: v,
-	}
-}
+import "fmt"
 
 func (v Value) GetInt() (int, error) {
 	if v.Type != Integer {
