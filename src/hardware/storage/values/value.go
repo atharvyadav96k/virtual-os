@@ -18,10 +18,10 @@ func NewFloat(v float32) Value {
 	}
 }
 
-func NewString(v string) Value {
+func NewCharacter(v byte) Value {
 	return Value{
-		Type: String,
-		Str:  v,
+		Type: Character,
+		Char: v,
 	}
 }
 
@@ -34,8 +34,8 @@ func NewBool(v bool) Value {
 
 func NewValue(valueType ValueType) Value {
 	switch valueType {
-	case String:
-		return NewString("")
+	case Character:
+		return NewCharacter(' ')
 	case Float:
 		return NewFloat(0)
 	case Integer:

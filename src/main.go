@@ -14,11 +14,7 @@ func NewComputer() computer {
 
 func main() {
 	computer := NewComputer()
-	computer.hardware.LoadProgram(0, []string{
-		"MOV R0 #42",
-		"ADD R0 #8",
-		"HALT",
-	})
+	computer.hardware.LoadProgram(0, []byte("MOV R0 #42\nADD R0 #8\nHALT\n"))
 	if err := computer.hardware.Run(); err != nil {
 		panic(err)
 	}

@@ -25,8 +25,8 @@ func (h *Hardware) Cpu() *cpu.CPU {
 	return &h.cpu
 }
 
-func (h *Hardware) LoadProgram(startAddr int, instructions []string) {
-	h.cpu.LoadProgram(&h.ram, startAddr, instructions)
+func (h *Hardware) LoadProgram(startAddr int, program []byte) {
+	h.cpu.LoadProgram(&h.ram, startAddr, program)
 }
 
 func (h *Hardware) Run() error {

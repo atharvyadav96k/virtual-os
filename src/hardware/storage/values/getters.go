@@ -16,11 +16,11 @@ func (v Value) GetFloat() (float32, error) {
 	return v.Float, nil
 }
 
-func (v Value) GetString() (string, error) {
-	if v.Type != String {
-		return "", fmt.Errorf("expected String, got %v", v.Type.String())
+func (v Value) GetCharacter() (byte, error) {
+	if v.Type != Character {
+		return ' ', fmt.Errorf("expected String, got %v", v.Type.String())
 	}
-	return v.Str, nil
+	return v.Char, nil
 }
 
 func (v Value) GetBool() (bool, error) {

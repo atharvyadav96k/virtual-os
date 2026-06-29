@@ -6,7 +6,7 @@ const (
 	Null ValueType = iota
 	Integer
 	Float
-	String
+	Character
 	Bool
 )
 
@@ -18,8 +18,8 @@ func (v ValueType) String() string {
 		return "Integer"
 	case Float:
 		return "Float"
-	case String:
-		return "String"
+	case Character:
+		return "Character"
 	case Bool:
 		return "Bool"
 	default:
@@ -31,6 +31,6 @@ type Value struct {
 	Type  ValueType
 	Int   int
 	Float float32
-	Str   string
+	Char  byte
 	Bool  bool
 }

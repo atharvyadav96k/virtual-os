@@ -42,30 +42,36 @@ func (c *CPU) JumpProgramCounter(jump int) {
 	c.programCounter += jump
 }
 
-// LoadProgram writes assembly instruction strings into RAM starting at startAddr.
-func (c *CPU) LoadProgram(r *ram.Ram, startAddr int, instructions []string) {
-	for i, instr := range instructions {
-		r.Write(startAddr+i, values.NewString(instr))
+// LoadProgram writes each byte of the program into RAM as Character values starting at startAddr.
+func (c *CPU) LoadProgram(r *ram.Ram, startAddr int, program []byte) {
+	for i, b := range program {
+		r.Write(startAddr+i, values.NewCharacter(b))
 	}
 }
 
 func (c *CPU) Step(r *ram.Ram) (bool, error) {
-	if c.programCounter < 0 || c.programCounter >= r.Size() {
-		return false, fmt.Errorf("program counter %d out of RAM bounds", c.programCounter)
+	var buf []byte
+	for {
+		if c.programCounter < 0 || c.programCounter >= r.Size() {
+			return false, fmt.Errorf("program counter %d out of RAM bounds", c.programCounter)
+		}
+		cell := r.Read(c.programCounter)
+		c.programCounter++
+		b, err := cell.GetCharacter()
+		if err != nil {
+			return false, fmt.Errorf("PC %d: expected byte, got %v", c.programCounter-1, cell.Type)
+		}
+		if b == '\n' || b == 0 {
+			break
+		}
+		buf = append(buf, b)
 	}
 
-	cell := r.Read(c.programCounter)
-	instr, err := cell.GetString()
-	if err != nil {
-		return false, fmt.Errorf("PC %d: expected instruction string, got %v", c.programCounter, cell.Type)
-	}
-
+	instr := string(buf)
 	code, err := parser.Parse(instr, c.general_purpose_register, r)
 	if err != nil {
-		return false, fmt.Errorf("PC %d: parse error: %w", c.programCounter, err)
+		return false, fmt.Errorf("parse error: %w", err)
 	}
-
-	c.programCounter++
 
 	if code == nil {
 		return false, nil
